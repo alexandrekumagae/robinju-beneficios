@@ -8,10 +8,7 @@ import Avatar from '../public/img/caju-avatar.png'
 
 function App() {
   return (
-    <Box
-      component="section"
-      sx={{ maxWidth: 500, p: 4, backgroundColor: '#ffe6ec' }}
-    >
+    <Box component="section" sx={{ maxWidth: 500, p: 4 }}>
       <Box
         sx={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}
       >

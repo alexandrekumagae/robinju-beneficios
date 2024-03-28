@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -17,6 +17,8 @@ import {
 } from '@mui/material'
 
 import Logo from '../../public/img/caju-logo.png'
+import { useCajuStore } from '../store'
+import { router } from '../routes'
 
 const LoginSchema = z.object({
   login: z.string().min(3),
@@ -31,6 +33,8 @@ interface InputProps {
 export function Login() {
   const navigate = useNavigate()
 
+  const { login, setLogin } = useCajuStore()
+
   const {
     register,
     handleSubmit,
@@ -44,11 +48,18 @@ export function Login() {
   const onSubmit: SubmitHandler<InputProps> = (data) => {
     if (data.login === 'admin' && data.password === 'admin') {
       setHasLoginError(false)
+      setLogin('admin')
       navigate('/dashboard')
     } else {
       return setHasLoginError(true)
     }
   }
+
+  useEffect(() => {
+    if (login) {
+      router.navigate('/dashboard')
+    }
+  }, [login])
 
   return (
     <Box sx={{ backgroundColor: '#ffe6ec' }}>
@@ -91,6 +102,11 @@ export function Login() {
           >
             Acesse seu Caju
           </Typography>
+
+          <Typography variant="caption" display="block" gutterBottom>
+            Acesse com o login &quot;admin&quot; e a senha &quot;admin&quot;.
+          </Typography>
+
           <Typography
             variant="body1"
             sx={{ fontWeight: 'bold', marginBottom: 4 }}

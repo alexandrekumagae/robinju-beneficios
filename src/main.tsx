@@ -13,10 +13,22 @@ import '@fontsource/roboto/700.css'
 
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline'
 
+import { Box } from '@mui/material'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ScopedCssBaseline>
-      <RouterProvider router={router} />
+    <ScopedCssBaseline
+      style={{
+        backgroundColor: '#ffe6ec',
+        display: 'flex',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
+      }}
+    >
+      <Box component="section" sx={{ maxWidth: 500, width: '100%' }}>
+        <RouterProvider router={router} />
+      </Box>
     </ScopedCssBaseline>
   </React.StrictMode>,
 )
