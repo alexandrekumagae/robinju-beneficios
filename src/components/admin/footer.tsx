@@ -17,6 +17,8 @@ export function Footer() {
         showLabels
         value={value}
         onChange={(event, newValue) => {
+          event.preventDefault()
+
           setValue(newValue)
         }}
       >
